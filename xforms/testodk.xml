@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Form Tests ODK</h:title>
+    <model>
+      <itext>
+        <translation default="true()" lang="English">
+          <text id="/testodk/relationship/9:label">
+            <value>Don't Know</value>
+          </text>
+          <text id="/testodk/relationship/6:label">
+            <value>Grandchild</value>
+          </text>
+          <text id="/testodk/relationship/1:label">
+            <value>Head</value>
+          </text>
+          <text id="/testodk/relationship/2:label">
+            <value>Spouse</value>
+          </text>
+          <text id="/testodk/relationship/3:label">
+            <value>Son/Daughter</value>
+          </text>
+          <text id="/testodk/relationship/8:label">
+            <value>Other Relative</value>
+          </text>
+          <text id="/testodk/relationship/4:label">
+            <value>Brother/Sister</value>
+          </text>
+          <text id="/testodk/relationship/7:label">
+            <value>Not Related</value>
+          </text>
+          <text id="/testodk/relationship/5:label">
+            <value>Parent</value>
+          </text>
+        </translation>
+        <translation lang="Swahili">
+          <text id="/testodk/relationship/9:label">
+            <value>Sijui</value>
+          </text>
+          <text id="/testodk/relationship/6:label">
+            <value>Mjukuu</value>
+          </text>
+          <text id="/testodk/relationship/1:label">
+            <value>Mkuu wa Kaya</value>
+          </text>
+          <text id="/testodk/relationship/2:label">
+            <value>Mke/Mme</value>
+          </text>
+          <text id="/testodk/relationship/3:label">
+            <value>Mtoto Kiume/Kike</value>
+          </text>
+          <text id="/testodk/relationship/8:label">
+            <value>Uhusiano Mwingine</value>
+          </text>
+          <text id="/testodk/relationship/4:label">
+            <value>Kaka/Dada</value>
+          </text>
+          <text id="/testodk/relationship/7:label">
+            <value>Hakuna Mahusiano</value>
+          </text>
+          <text id="/testodk/relationship/5:label">
+            <value>Mzazi</value>
+          </text>
+        </translation>
+        <translation lang="Portuguese">
+          <text id="/testodk/relationship/9:label">
+            <value>Não sabe</value>
+          </text>
+          <text id="/testodk/relationship/6:label">
+            <value>Neto/a</value>
+          </text>
+          <text id="/testodk/relationship/1:label">
+            <value>O próprio chefe do agregado</value>
+          </text>
+          <text id="/testodk/relationship/2:label">
+            <value>Esposo/a</value>
+          </text>
+          <text id="/testodk/relationship/3:label">
+            <value>Filho/Filha</value>
+          </text>
+          <text id="/testodk/relationship/8:label">
+            <value>Outro parente</value>
+          </text>
+          <text id="/testodk/relationship/4:label">
+            <value>Irmão/Irmã</value>
+          </text>
+          <text id="/testodk/relationship/7:label">
+            <value>Sem relação</value>
+          </text>
+          <text id="/testodk/relationship/5:label">
+            <value>Pai/Mãe</value>
+          </text>
+        </translation>
+      </itext>
+      <instance>
+        <testodk id="testodk">
+          <start/>
+          <end/>
+          <deviceid/>
+          <visitId/>
+          <locationId/>
+          <roundNumber/>
+          <fieldTest/>
+          <resultTest/>
+          <relationship/>
+          <processedByMirth/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </testodk>
+      </instance>
+      <bind jr:preload="timestamp" jr:preloadParams="start" nodeset="/testodk/start" type="dateTime"/>
+      <bind jr:preload="timestamp" jr:preloadParams="end" nodeset="/testodk/end" type="dateTime"/>
+      <bind jr:preload="property" jr:preloadParams="deviceid" nodeset="/testodk/deviceid" type="string"/>
+      <bind nodeset="/testodk/visitId" type="string"/>
+      <bind nodeset="/testodk/locationId" type="string"/>
+      <bind nodeset="/testodk/roundNumber" type="string"/>
+      <bind nodeset="/testodk/fieldTest" type="string"/>
+      <bind calculate=" /testodk/fieldTest " nodeset="/testodk/resultTest" type="string"/>
+      <bind nodeset="/testodk/relationship" type="select1"/>
+      <bind nodeset="/testodk/processedByMirth" readonly="true()" type="int"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/testodk/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/testodk/visitId">
+      <label>Visit Code</label>
+    </input>
+    <input ref="/testodk/locationId">
+      <label>Household Code</label>
+    </input>
+    <input ref="/testodk/roundNumber">
+      <label>Código do Inquiridor</label>
+    </input>
+    <input ref="/testodk/fieldTest">
+      <label>Write something about the Household</label>
+    </input>
+    <input ref="/testodk/resultTest">
+      <label>My Result: <output value=" /testodk/fieldTest "/></label></input>
+    <select1 ref="/testodk/relationship">
+      <label>Relation with Household Head</label>
+      <item>
+        <label ref="jr:itext('/testodk/relationship/1:label')"/>
+        <value>1</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/testodk/relationship/2:label')"/>
+        <value>2</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/testodk/relationship/3:label')"/>
+        <value>3</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/testodk/relationship/4:label')"/>
+        <value>4</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/testodk/relationship/5:label')"/>
+        <value>5</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/testodk/relationship/6:label')"/>
+        <value>6</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/testodk/relationship/7:label')"/>
+        <value>7</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/testodk/relationship/8:label')"/>
+        <value>8</value>
+      </item>
+      <item>
+        <label ref="jr:itext('/testodk/relationship/9:label')"/>
+        <value>9</value>
+      </item>
+    </select1>
+    <input ref="/testodk/processedByMirth">
+      <label>processed</label>
+    </input>
+  </h:body>
+</h:html>
