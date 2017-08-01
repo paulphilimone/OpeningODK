@@ -116,7 +116,7 @@
       <bind nodeset="/testodk/locationId" type="string"/>
       <bind nodeset="/testodk/roundNumber" type="string"/>
       <bind nodeset="/testodk/fieldTest" type="string"/>
-      <bind calculate=" /testodk/fieldTest " nodeset="/testodk/resultTest" type="string"/>
+      <bind calculate=" /testodk/fieldTest " nodeset="/testodk/resultTest" readonly="true()" type="string"/>
       <bind nodeset="/testodk/relationship" type="select1"/>
       <bind nodeset="/testodk/processedByMirth" readonly="true()" type="int"/>
       <bind calculate="concat('uuid:', uuid())" nodeset="/testodk/meta/instanceID" readonly="true()" type="string"/>
