@@ -37,7 +37,7 @@
         android:layout_marginBottom="20dp"
         android:ems="10"
         android:background="#FFFFFF"
-        android:text="Registo_De_Gravidez" />
+        android:text="testodk" />
 
     <Button
         android:id="@+id/btOpenODK"
