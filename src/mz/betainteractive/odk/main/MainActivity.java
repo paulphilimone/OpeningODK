@@ -1,37 +1,23 @@
-package mz.betainteractive.odk;
+package mz.betainteractive.odk.main;
 
 
 
 
-import mz.betainteractive.odk.FormsProviderAPI;
-import mz.betainteractive.odk.listener.OdkFormLoadListener;
-import mz.betainteractive.odk.model.FilledForm;
-import mz.betainteractive.odk.task.OdkGeneratedFormLoadTask;
-import mz.betainteractive.testodk.R;
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.ContentResolver;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.database.Cursor;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+import mz.betainteractive.odk.R;
+import mz.betainteractive.odk.model.FilledForm;
 
 public class MainActivity extends Activity {
 	
-	EditText txtFormId;
-	Button btOpenODK;	
-	//private final FormFiller formFiller = new FormFiller();
-	
-	private Uri contentUri;
-	private String jrFormId;
+	private EditText txtFormId;
+	private Button btOpenODK;	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -74,38 +60,8 @@ public class MainActivity extends Activity {
 		filledForm.put("locationId", "MAN000001");
 		filledForm.put("roundNumber", 16);			
 				
-		loadForm(1, filledForm);
+		//loadForm(1, filledForm);
 	}
-
-	public void loadForm(final int requestCode, final FilledForm filledForm) {
-		
-		new OdkGeneratedFormLoadTask(getBaseContext(), filledForm, new OdkFormLoadListener() {
-            public void onOdkFormLoadSuccess(Uri contentUri) {
-            	Log.d("contenturi", contentUri+"");
-            	
-            	Cursor cursor = getCursorForFormsProvider(filledForm.getFormName());
-                if (cursor.moveToFirst()) {
-                    jrFormId = cursor.getString(0);
-                }
-                
-                MainActivity.this.contentUri = contentUri;
-                
-                startActivityForResult(new Intent(Intent.ACTION_EDIT, contentUri), requestCode);
-            }
-
-            public void onOdkFormLoadFailure() {
-                //Toast.makeText(MainActivity.this, "Cant open ODK Form", 4000);
-            	Log.d("Cant open ODK Form", "odk");
-            }
-        }).execute();
-    }
-	
-	private Cursor getCursorForFormsProvider(String name) {
-    	ContentResolver resolver = getContentResolver();
-        return resolver.query(FormsProviderAPI.FormsColumns.CONTENT_URI, new String[] {
-                FormsProviderAPI.FormsColumns.JR_FORM_ID, FormsProviderAPI.FormsColumns.FORM_FILE_PATH },
-                FormsProviderAPI.FormsColumns.JR_FORM_ID + " like ?", new String[] { name + "%" }, null);
-    }
     
     
 }
